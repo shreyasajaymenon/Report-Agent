@@ -1,0 +1,8 @@
+{
+  "companyName": "Demo Company",
+  "expectedMetrics": {
+    "sectionsPresent": ["cro", "planner", "discovery", "financial", "risk", "finalText"],
+    "minCitations": 0,
+    "maxLatencyMs": 120000
+  }
+}
