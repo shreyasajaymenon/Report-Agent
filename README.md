@@ -288,7 +288,9 @@ npm install
 
 ### 3. Install Python dependencies
 
-Install the Python packages required by the report-generation and charting components according to your local Python environment.
+```bash
+pip install -r requirements.txt
+```
 
 ### 4. Configure environment variables
 
