@@ -2,7 +2,7 @@
 
 > A production-oriented multi-agent AI system that autonomously researches companies, analyzes financial and market information, validates evidence, and generates structured equity research reports.
 
-Ventura V2 is designed as an end-to-end **AI research pipeline**, rather than a single LLM prompt. It coordinates 20+ specialized agents through a phased orchestration architecture to transform raw company information into a structured, evidence-backed equity research report.
+Ventura V2 is designed as an end-to-end AI research pipeline, rather than a single LLM prompt. It coordinates 20+ specialized agents through a phased orchestration architecture to transform raw company information into a structured, evidence-backed equity research report.
 
 ---
 
@@ -27,63 +27,63 @@ The result is an automated research workflow designed to reduce repetitive manua
 
 ## 🧠 System Architecture
 
-Ventura V2 uses a **multi-agent, phased orchestration architecture**.
+Ventura V2 uses a multi-agent, phased orchestration architecture.
 
 ```text
                          USER / COMPANY
-                              │
-                              ▼
-                    ┌───────────────────┐
-                    │   Planner Agent   │
-                    └─────────┬─────────┘
-                              │
-                              ▼
-              ┌──────────────────────────────┐
-              │       DISCOVERY PHASE        │
-              │                              │
-              │ Company IR     NSE Agent     │
-              │ BSE Agent      Industry      │
-              │ Competition    Transcripts   │
-              │ Annual Reports Quarterly     │
-              └───────────────┬──────────────┘
-                              │
-                              ▼
-              ┌──────────────────────────────┐
-              │       ANALYTICS PHASE        │
-              │                              │
-              │ Financials     Ratios         │
-              │ Valuation      Risk           │
-              │ Governance     Industry       │
-              └───────────────┬──────────────┘
-                              │
-                              ▼
-              ┌──────────────────────────────┐
-              │      VERIFICATION PHASE      │
-              │                              │
-              │ Evidence Extraction          │
-              │ Source Verification          │
-              │ Claim Validation              │
-              └───────────────┬──────────────┘
-                              │
-                              ▼
-              ┌──────────────────────────────┐
-              │       SYNTHESIS PHASE        │
-              │                              │
-              │ Chief Research Officer       │
-              │ Writer                       │
-              │ Critic                       │
-              │ Editor                       │
-              │ Investment Committee         │
-              └───────────────┬──────────────┘
-                              │
-                              ▼
-                    ┌───────────────────┐
-                    │ Report Formatter  │
-                    │ + Chart Generator │
-                    └─────────┬─────────┘
-                              │
-                              ▼
-                    📄 FINAL RESEARCH REPORT
+                                  │
+                                  ▼
+                         ┌───────────────────┐
+                         │   Planner Agent   │
+                         └─────────┬─────────┘
+                                   │
+                                   ▼
+                   ┌──────────────────────────────┐
+                   │       DISCOVERY PHASE        │
+                   │                              │
+                   │ Company IR     NSE Agent     │
+                   │ BSE Agent      Industry      │
+                   │ Competition    Transcripts   │
+                   │ Annual Reports Quarterly     │
+                   └───────────────┬──────────────┘
+                                   │
+                                   ▼
+                   ┌──────────────────────────────┐
+                   │       ANALYTICS PHASE        │
+                   │                              │
+                   │ Financials     Ratios         │
+                   │ Valuation      Risk           │
+                   │ Governance     Industry       │
+                   └───────────────┬──────────────┘
+                                   │
+                                   ▼
+                   ┌──────────────────────────────┐
+                   │      VERIFICATION PHASE      │
+                   │                              │
+                   │ Evidence Extraction          │
+                   │ Source Verification          │
+                   │ Claim Validation              │
+                   └───────────────┬──────────────┘
+                                   │
+                                   ▼
+                   ┌──────────────────────────────┐
+                   │       SYNTHESIS PHASE        │
+                   │                              │
+                   │ Chief Research Officer       │
+                   │ Writer                       │
+                   │ Critic                       │
+                   │ Editor                       │
+                   │ Investment Committee         │
+                   └───────────────┬──────────────┘
+                                   │
+                                   ▼
+                         ┌───────────────────┐
+                         │ Report Formatter  │
+                         │ + Chart Generator │
+                         └─────────┬─────────┘
+                                   │
+                                   ▼
+                         📄 FINAL RESEARCH REPORT
 ```
 
 ---
@@ -140,7 +140,7 @@ Independent research tasks can execute concurrently within defined phases, reduc
 
 ### 🛡️ Schema Validation
 
-Agent outputs are validated using **Zod schemas** before being passed further through the pipeline.
+Agent outputs are validated using Zod schemas before being passed further through the pipeline.
 
 This catches malformed or schema-invalid responses before they propagate to downstream agents.
 
@@ -212,7 +212,7 @@ Python-based tooling is used for PDF generation and chart rendering.
 ## 🏗️ Project Structure
 
 ```text
-ventura-v2/
+Report-Agent/
 │
 ├── .github/
 │   └── workflows/
@@ -276,8 +276,8 @@ Install:
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/shreyasajaymenon/ventura-v2.git
-cd ventura-v2
+git clone https://github.com/shreyasajaymenon/Report-Agent.git
+cd Report-Agent
 ```
 
 ### 2. Install Node dependencies
@@ -288,9 +288,7 @@ npm install
 
 ### 3. Install Python dependencies
 
-```bash
-pip install -r requirements.txt
-```
+Install the Python packages required by the report-generation and charting components according to your local Python environment.
 
 ### 4. Configure environment variables
 
@@ -302,7 +300,7 @@ cp .env.example .env
 
 Add your own API credentials.
 
-> **Never commit `.env` or API keys to GitHub.**
+> Never commit `.env` or API keys to GitHub.
 
 ---
 
@@ -380,7 +378,7 @@ Mock Mode enables reproducible evaluations without depending on external API ava
 
 API credentials are loaded through environment variables.
 
-Sensitive credentials should **never** be committed to GitHub.
+Sensitive credentials should never be committed to GitHub.
 
 Use:
 
@@ -401,13 +399,13 @@ Ventura V2 includes a Dockerfile for containerized execution.
 Build the image:
 
 ```bash
-docker build -t ventura-v2 .
+docker build -t report-agent .
 ```
 
 Run:
 
 ```bash
-docker run --env-file .env ventura-v2
+docker run --env-file .env report-agent
 ```
 
 ---
@@ -462,7 +460,7 @@ Potential extensions include:
 
 ## 👨‍💻 Author
 
-**Shreyas Ajay Menon**
+Shreyas Ajay Menon
 
 AI/ML Engineer focused on:
 
@@ -478,7 +476,7 @@ AI/ML Engineer focused on:
 
 Ventura V2 is not designed as a single chatbot or prompt wrapper.
 
-It explores how **specialized AI agents, structured validation, evidence tracking, orchestration, testing, and automated document generation** can be combined into a complete AI engineering workflow.
+It explores how specialized AI agents, structured validation, evidence tracking, orchestration, testing, and automated document generation can be combined into a complete AI engineering workflow.
 
 The system moves from:
 
@@ -498,22 +496,22 @@ Unstructured Information
    Multi-Agent Research
           │
           ▼
-   Structured Analysis
+    Structured Analysis
           │
           ▼
  Evidence & Verification
           │
           ▼
-      Synthesis
+       Synthesis
           │
           ▼
- Automated Report
+   Automated Report
 ```
 
 ---
 
 ## 📌 Project Status
 
-**Ventura V2 — Production-oriented research prototype**
+Ventura V2 — Production-oriented research prototype
 
 The current implementation focuses on multi-agent orchestration, evidence-aware research, structured validation, resilient execution, automated evaluation, and report generation.
