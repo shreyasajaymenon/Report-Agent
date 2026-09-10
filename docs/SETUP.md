@@ -1,45 +1,48 @@
 # Ventura V2 Setup Guide
 
-## Requirements
-- Node.js (v18+)
-- Python 3.9+ (with `reportlab`, `pandas`, `matplotlib`)
-- An OpenAI or OpenRouter API key.
-- A LangSearch API key.
+## Prerequisites
+- Node.js 18+
+- Python 3.9+
+- `pip` package manager
 
 ## Installation
 
-1. **Install Node Dependencies**
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/yourusername/ai-report-generation-pipeline.git
+   cd ai-report-generation-pipeline
+   ```
+
+2. **Install Node.js Dependencies:**
    ```bash
    npm install
    ```
 
-2. **Install Python Dependencies**
+3. **Install Python Dependencies:**
    ```bash
-   pip install reportlab pandas matplotlib
+   pip install reportlab pandas matplotlib numpy
    ```
 
-3. **Environment Variables**
-   Copy the example environment file and add your keys:
+4. **Environment Variables:**
+   Copy `.env.example` to `.env` and fill in your API keys:
    ```bash
    cp .env.example .env
    ```
-   Edit `.env` to include your actual API keys.
+   *Note: OpenRouter API keys are required for LLM calls. LangSearch keys are required for web retrieval.*
 
-## Running the Pipeline
+## Running the System
 
-Run the orchestrator using the CLI:
+To run a deterministic mock pipeline (no API keys required):
 ```bash
-node src/index.js --company "Apollo Hospitals"
+npm run demo
 ```
 
-## Running Tests and Evaluation
-
-Run basic unit tests for the framework:
+To run a live equity research report:
 ```bash
-node tests/core.test.js
+node src/index.js --company "Apple Inc."
 ```
 
-Run the evaluation script after a successful pipeline run to view telemetry:
+## Running Tests
 ```bash
-node evaluation/evaluate.js
+npm test
 ```
