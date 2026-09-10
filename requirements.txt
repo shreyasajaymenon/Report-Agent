@@ -1,0 +1,6 @@
+# Python dependencies for Ventura V2 report generation and charting
+reportlab
+matplotlib
+numpy
+pandas
+Pillow
